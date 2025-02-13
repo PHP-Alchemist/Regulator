@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -42,9 +43,7 @@ class ModuloTest extends TestCase
         $op->prepareValue($context);
     }
 
-    /**
-     * @dataProvider moduloData
-     */
+    #[DataProvider('moduloData')]
     public function testModulo($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -55,7 +54,7 @@ class ModuloTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function moduloData()
+    public static function moduloData()
     {
         return [
             [6, 2, 0],

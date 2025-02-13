@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -34,9 +35,7 @@ class UnionTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider unionData
-     */
+    #[DataProvider('unionData')]
     public function testUnion($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -47,7 +46,7 @@ class UnionTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function unionData()
+    public static function unionData()
     {
         return [
             [6, 2, [6, 2]],

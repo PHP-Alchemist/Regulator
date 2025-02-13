@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -42,9 +43,7 @@ class DivisionTest extends TestCase
         $op->prepareValue($context);
     }
 
-    /**
-     * @dataProvider divisionData
-     */
+    #[DataProvider('divisionData')]
     public function testDivision($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -55,7 +54,7 @@ class DivisionTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function divisionData()
+    public static function divisionData()
     {
         return [
             [6, 2, 3],

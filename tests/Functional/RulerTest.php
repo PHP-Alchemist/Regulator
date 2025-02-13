@@ -2,15 +2,14 @@
 
 namespace Ruler\Test\Functional;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\RuleBuilder;
 
 class RulerTest extends TestCase
 {
-    /**
-     * @dataProvider truthTableTwo
-     */
+    #[DataProvider('truthTableTwo')]
     public function testDeMorgan($p, $q)
     {
         $rb = new RuleBuilder();
@@ -37,9 +36,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableTwo
-     */
+    #[DataProvider('truthTableTwo')]
     public function testDeMorganTwo($p, $q)
     {
         $rb = new RuleBuilder();
@@ -66,9 +63,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableTwo
-     */
+    #[DataProvider('truthTableTwo')]
     public function testCommutation($p, $q)
     {
         $rb = new RuleBuilder();
@@ -89,9 +84,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableTwo
-     */
+    #[DataProvider('truthTableTwo')]
     public function testCommutationTwo($p, $q)
     {
         $rb = new RuleBuilder();
@@ -112,9 +105,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableThree
-     */
+    #[DataProvider('truthTableThree')]
     public function testAssociation($p, $q, $r)
     {
         $rb = new RuleBuilder();
@@ -141,9 +132,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableThree
-     */
+    #[DataProvider('truthTableThree')]
     public function testAssociationTwo($p, $q, $r)
     {
         $rb = new RuleBuilder();
@@ -170,9 +159,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableThree
-     */
+    #[DataProvider('truthTableThree')]
     public function testDistribution($p, $q, $r)
     {
         $rb = new RuleBuilder();
@@ -202,9 +189,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableThree
-     */
+    #[DataProvider('truthTableThree')]
     public function testDistributionTwo($p, $q, $r)
     {
         $rb = new RuleBuilder();
@@ -234,9 +219,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableOne
-     */
+    #[DataProvider('truthTableOne')]
     public function testDoubleNegation($p)
     {
         $rb = new RuleBuilder();
@@ -255,9 +238,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableOne
-     */
+    #[DataProvider('truthTableOne')]
     public function testTautology($p)
     {
         $rb = new RuleBuilder();
@@ -275,9 +256,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableOne
-     */
+    #[DataProvider('truthTableOne')]
     public function testTautologyTwo($p)
     {
         $rb = new RuleBuilder();
@@ -295,9 +274,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableOne
-     */
+    #[DataProvider('truthTableOne')]
     public function testExcludedMiddle($p)
     {
         $rb = new RuleBuilder();
@@ -315,9 +292,7 @@ class RulerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider truthTableOne
-     */
+    #[DataProvider('truthTableOne')]
     public function testNonContradiction($p)
     {
         $rb = new RuleBuilder();
@@ -337,7 +312,7 @@ class RulerTest extends TestCase
         );
     }
 
-    public function truthTableOne()
+    public static function truthTableOne()
     {
         return [
             [true],
@@ -345,7 +320,7 @@ class RulerTest extends TestCase
         ];
     }
 
-    public function truthTableTwo()
+    public static function truthTableTwo()
     {
         return [
             [true,  true],
@@ -355,7 +330,7 @@ class RulerTest extends TestCase
         ];
     }
 
-    public function truthTableThree()
+    public static function truthTableThree()
     {
         return [
             [true,  true,  true],

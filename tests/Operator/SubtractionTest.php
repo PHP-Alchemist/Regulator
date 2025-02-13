@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -30,9 +31,7 @@ class SubtractionTest extends TestCase
         $op->prepareValue($context);
     }
 
-    /**
-     * @dataProvider subtractData
-     */
+    #[DataProvider('subtractData')]
     public function testSubtract($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -43,7 +42,7 @@ class SubtractionTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function subtractData()
+    public static function subtractData()
     {
         return [
             [6, 2, 4],

@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -17,9 +18,7 @@ class MinTest extends TestCase
         $this->assertInstanceOf(\Ruler\VariableOperand::class, $op);
     }
 
-    /**
-     * @dataProvider invalidData
-     */
+    #[DataProvider('invalidData')]
     public function testInvalidData($datum)
     {
         $this->expectException(\RuntimeException::class);
@@ -31,7 +30,7 @@ class MinTest extends TestCase
         $op->prepareValue($context);
     }
 
-    public function invalidData()
+    public static function invalidData()
     {
         return [
             ['string'],
@@ -41,9 +40,7 @@ class MinTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider minData
-     */
+    #[DataProvider('minData')]
     public function testMin($a, $result)
     {
         $var = new Variable('a', $a);
@@ -56,7 +53,7 @@ class MinTest extends TestCase
         );
     }
 
-    public function minData()
+    public static function minData()
     {
         return [
             [5, 5],

@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -18,9 +19,7 @@ class SetContainsTest extends TestCase
         $this->assertInstanceOf(\Ruler\Proposition::class, $op);
     }
 
-    /**
-     * @dataProvider containsData
-     */
+    #[DataProvider('containsData')]
     public function testContains($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -31,9 +30,7 @@ class SetContainsTest extends TestCase
         $this->assertEquals($op->evaluate($context), $result);
     }
 
-    /**
-     * @dataProvider containsData
-     */
+    #[DataProvider('containsData')]
     public function testDoesNotContain($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -44,7 +41,7 @@ class SetContainsTest extends TestCase
         $this->assertNotEquals($op->evaluate($context), $result);
     }
 
-    public function containsData()
+    public static function containsData()
     {
         return [
             [[1], 1, true],

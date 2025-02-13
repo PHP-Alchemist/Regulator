@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Functional;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\RuleBuilder;
@@ -36,7 +37,7 @@ class SetTest extends TestCase
         );
     }
 
-    public function setUnion()
+    public static function setUnion()
     {
         return [
             [
@@ -77,9 +78,7 @@ class SetTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider setUnion
-     */
+    #[DataProvider('setUnion')]
     public function testUnion($a, $b, $expected)
     {
         $rb = new RuleBuilder();
@@ -93,7 +92,7 @@ class SetTest extends TestCase
         );
     }
 
-    public function setIntersect()
+    public static function setIntersect()
     {
         return [
             [
@@ -134,9 +133,7 @@ class SetTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider setIntersect
-     */
+    #[DataProvider('setIntersect')]
     public function testIntersect($a, $b, $expected)
     {
         $rb = new RuleBuilder();
@@ -150,7 +147,7 @@ class SetTest extends TestCase
         );
     }
 
-    public function setComplement()
+    public static function setComplement()
     {
         return [
             [
@@ -191,9 +188,7 @@ class SetTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider setComplement
-     */
+    #[DataProvider('setComplement')]
     public function testComplement($a, $b, $expected)
     {
         $rb = new RuleBuilder();
@@ -207,7 +202,7 @@ class SetTest extends TestCase
         );
     }
 
-    public function setSymmetricDifference()
+    public static function setSymmetricDifference()
     {
         return [
             [
@@ -248,9 +243,7 @@ class SetTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider setSymmetricDifference
-     */
+    #[DataProvider('setSymmetricDifference')]
     public function testSymmetricDifference($a, $b, $expected)
     {
         $rb = new RuleBuilder();

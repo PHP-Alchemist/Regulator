@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -31,9 +32,7 @@ class SymmetricDifferenceTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider symmetricDifferenceData
-     */
+    #[DataProvider('symmetricDifferenceData')]
     public function testSymmetricDifference($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -47,7 +46,7 @@ class SymmetricDifferenceTest extends TestCase
         );
     }
 
-    public function symmetricDifferenceData()
+    public static function symmetricDifferenceData()
     {
         return [
             [6, 2, [6, 2]],
