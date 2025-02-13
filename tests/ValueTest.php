@@ -2,8 +2,8 @@
 
 namespace Ruler\Test;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Ruler\Value;
 
 class ValueTest extends TestCase

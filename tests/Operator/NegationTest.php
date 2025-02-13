@@ -30,7 +30,6 @@ class NegationTest extends TestCase
     }
 
     #[DataProvider('negateData')]
-
     public function testSubtract($a, $result)
     {
         $varA = new Variable('a', $a);
