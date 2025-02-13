@@ -28,8 +28,8 @@ class Variable implements VariableOperand
     /**
      * Variable class constructor.
      *
-     * @param string $name  Variable name (default: null)
-     * @param mixed  $value Default Variable value (default: null)
+     * @param string|null $name Variable name (default: null)
+     * @param mixed $value Default Variable value (default: null)
      */
     public function __construct(?string $name = null, mixed $value = null)
     {
