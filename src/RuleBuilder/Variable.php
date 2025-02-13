@@ -39,8 +39,8 @@ class Variable extends BaseVariable implements \ArrayAccess
      * RuleBuilder Variable constructor.
      *
      * @param RuleBuilder $ruleBuilder
-     * @param string      $name        Variable name (default: null)
-     * @param mixed       $value       Default Variable value (default: null)
+     * @param string|null $name Variable name (default: null)
+     * @param mixed $value Default Variable value (default: null)
      */
     public function __construct(RuleBuilder $ruleBuilder, ?string $name = null, mixed $value = null)
     {
