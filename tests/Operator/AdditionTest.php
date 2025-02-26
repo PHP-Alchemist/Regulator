@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -30,9 +31,7 @@ class AdditionTest extends TestCase
         $op->prepareValue($context);
     }
 
-    /**
-     * @dataProvider additionData
-     */
+    #[DataProvider('additionData')]
     public function testAddition($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -43,7 +42,7 @@ class AdditionTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function additionData()
+    public static function additionData()
     {
         return [
             [1, 2, 3],

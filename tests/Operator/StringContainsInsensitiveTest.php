@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -31,9 +32,7 @@ class StringContainsInsensitiveTest extends TestCase
         $this->assertEquals($op->evaluate($context), $result);
     }
 
-    /**
-     * @dataProvider containsData
-     */
+    #[DataProvider('containsData')]
     public function testDoesNotContain($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -44,7 +43,7 @@ class StringContainsInsensitiveTest extends TestCase
         $this->assertNotEquals($op->evaluate($context), $result);
     }
 
-    public function containsData()
+    public static function containsData()
     {
         return [
             ['supercalifragilistic', 'super', true],

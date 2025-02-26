@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -18,9 +19,7 @@ class StartsWithInsensitiveTest extends TestCase
         $this->assertInstanceOf(\Ruler\Proposition::class, $op);
     }
 
-    /**
-     * @dataProvider startsWithData
-     */
+    #[DataProvider('startsWithData')]
     public function testStartsWithInsensitive($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -31,7 +30,7 @@ class StartsWithInsensitiveTest extends TestCase
         $this->assertEquals($op->evaluate($context), $result);
     }
 
-    public function startsWithData()
+    public static function startsWithData()
     {
         return [
             ['supercalifragilistic', 'supercalifragilistic', true],

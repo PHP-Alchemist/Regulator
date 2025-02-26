@@ -2,6 +2,7 @@
 
 namespace Ruler\Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Value;
 
@@ -14,9 +15,7 @@ class ValueTest extends TestCase
         $this->assertEquals($valueString, $value->getValue());
     }
 
-    /**
-     * @dataProvider getRelativeValues
-     */
+    #[DataProvider('getRelativeValues')]
     public function testGreaterThanEqualToAndLessThan($a, $b, $gt, $eq, $lt)
     {
         $valA = new Value($a);
@@ -27,7 +26,7 @@ class ValueTest extends TestCase
         $this->assertEquals($eq, $valA->equalTo($valB));
     }
 
-    public function getRelativeValues()
+    public static function getRelativeValues()
     {
         return [
             [1, 2,     false, false, true],

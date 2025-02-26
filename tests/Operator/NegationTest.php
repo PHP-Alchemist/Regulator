@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -28,9 +29,7 @@ class NegationTest extends TestCase
         $op->prepareValue($context);
     }
 
-    /**
-     * @dataProvider negateData
-     */
+    #[DataProvider('negateData')]
     public function testSubtract($a, $result)
     {
         $varA = new Variable('a', $a);
@@ -40,7 +39,7 @@ class NegationTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function negateData()
+    public static function negateData()
     {
         return [
             [1, -1],

@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -18,9 +19,7 @@ class EndsWithTest extends TestCase
         $this->assertInstanceOf(\Ruler\Proposition::class, $op);
     }
 
-    /**
-     * @dataProvider endsWithData
-     */
+    #[DataProvider('endsWithData')]
     public function testEndsWith($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -31,7 +30,7 @@ class EndsWithTest extends TestCase
         $this->assertEquals($op->evaluate($context), $result);
     }
 
-    public function endsWithData()
+    public static function endsWithData()
     {
         return [
             ['supercalifragilistic', 'supercalifragilistic', true],

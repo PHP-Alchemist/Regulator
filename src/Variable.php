@@ -28,10 +28,10 @@ class Variable implements VariableOperand
     /**
      * Variable class constructor.
      *
-     * @param string $name  Variable name (default: null)
-     * @param mixed  $value Default Variable value (default: null)
+     * @param string|null $name  Variable name (default: null)
+     * @param mixed       $value Default Variable value (default: null)
      */
-    public function __construct(string $name = null, $value = null)
+    public function __construct(?string $name = null, mixed $value = null)
     {
         $this->name = $name;
         $this->value = $value;
@@ -40,7 +40,7 @@ class Variable implements VariableOperand
     /**
      * Return the Variable name.
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -60,7 +60,7 @@ class Variable implements VariableOperand
      *
      * @return mixed Variable value
      */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }

@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -28,9 +29,7 @@ class FloorTest extends TestCase
         $op->prepareValue($context);
     }
 
-    /**
-     * @dataProvider ceilingData
-     */
+    #[DataProvider('ceilingData')]
     public function testCeiling($a, $result)
     {
         $varA = new Variable('a', $a);
@@ -40,7 +39,7 @@ class FloorTest extends TestCase
         $this->assertEquals($op->prepareValue($context)->getValue(), $result);
     }
 
-    public function ceilingData()
+    public static function ceilingData()
     {
         return [
             [1.2, 1],

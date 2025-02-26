@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -31,9 +32,7 @@ class ComplementTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider complementData
-     */
+    #[DataProvider('complementData')]
     public function testComplement($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -47,7 +46,7 @@ class ComplementTest extends TestCase
         );
     }
 
-    public function complementData()
+    public static function complementData()
     {
         return [
             [6, 2, [6]],

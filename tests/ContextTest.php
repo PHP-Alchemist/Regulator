@@ -25,6 +25,7 @@
 namespace Ruler\Test;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Test\Fixtures\Fact;
@@ -79,7 +80,7 @@ class ContextTest extends TestCase
             return new Fact();
         };
 
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $context['fact']);
+        $this->assertInstanceOf(Fact::class, $context['fact']);
     }
 
     public function testFactsShouldBeDifferent()
@@ -90,10 +91,10 @@ class ContextTest extends TestCase
         };
 
         $factOne = $context['fact'];
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $factOne);
+        $this->assertInstanceOf(Fact::class, $factOne);
 
         $factTwo = $context['fact'];
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $factTwo);
+        $this->assertInstanceOf(Fact::class, $factTwo);
 
         $this->assertNotSame($factOne, $factTwo);
     }
@@ -164,26 +165,22 @@ class ContextTest extends TestCase
         $this->assertFalse(isset($context['fact']));
     }
 
-    /**
-     * @dataProvider factDefinitionProvider
-     */
+    #[DataProvider('factDefinitionProvider')]
     public function testShare($fact)
     {
         $context = new Context();
         $context['shared_fact'] = $context->share($fact);
 
         $factOne = $context['shared_fact'];
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $factOne);
+        $this->assertInstanceOf(Fact::class, $factOne);
 
         $factTwo = $context['shared_fact'];
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $factTwo);
+        $this->assertInstanceOf(Fact::class, $factTwo);
 
         $this->assertSame($factOne, $factTwo);
     }
 
-    /**
-     * @dataProvider factDefinitionProvider
-     */
+    #[DataProvider('factDefinitionProvider')]
     public function testProtect($fact)
     {
         $context = new Context();
@@ -236,7 +233,7 @@ class ContextTest extends TestCase
         $context = new Context();
         $context['invokable'] = new Invokable();
 
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $context['invokable']);
+        $this->assertInstanceOf(Fact::class, $context['invokable']);
     }
 
     /** @test */
@@ -245,12 +242,10 @@ class ContextTest extends TestCase
         $context = new Context();
         $context['non_invokable'] = new Fact();
 
-        $this->assertInstanceOf(\Ruler\Test\Fixtures\Fact::class, $context['non_invokable']);
+        $this->assertInstanceOf(Fact::class, $context['non_invokable']);
     }
 
-    /**
-     * @dataProvider badFactDefinitionProvider
-     */
+    #[DataProvider('badFactDefinitionProvider')]
     public function testShareFailsForInvalidFactDefinitions($fact)
     {
         $this->expectException(InvalidArgumentException::class);
@@ -259,9 +254,7 @@ class ContextTest extends TestCase
         $context->share($fact);
     }
 
-    /**
-     * @dataProvider badFactDefinitionProvider
-     */
+    #[DataProvider('badFactDefinitionProvider')]
     public function testProtectFailsForInvalidFactDefinitions($fact)
     {
         $this->expectException(InvalidArgumentException::class);
@@ -273,7 +266,7 @@ class ContextTest extends TestCase
     /**
      * Provider for invalid fact definitions.
      */
-    public function badFactDefinitionProvider()
+    public static function badFactDefinitionProvider()
     {
         return [
             [123],
@@ -284,7 +277,7 @@ class ContextTest extends TestCase
     /**
      * Provider for fact definitions.
      */
-    public function factDefinitionProvider()
+    public static function factDefinitionProvider()
     {
         return [
             [function ($value) {

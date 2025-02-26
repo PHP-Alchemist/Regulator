@@ -39,10 +39,10 @@ class Variable extends BaseVariable implements \ArrayAccess
      * RuleBuilder Variable constructor.
      *
      * @param RuleBuilder $ruleBuilder
-     * @param string      $name        Variable name (default: null)
+     * @param string|null $name        Variable name (default: null)
      * @param mixed       $value       Default Variable value (default: null)
      */
-    public function __construct(RuleBuilder $ruleBuilder, string $name = null, $value = null)
+    public function __construct(RuleBuilder $ruleBuilder, ?string $name = null, mixed $value = null)
     {
         $this->ruleBuilder = $ruleBuilder;
         parent::__construct($name, $value);
@@ -85,9 +85,9 @@ class Variable extends BaseVariable implements \ArrayAccess
     /**
      * Fluent interface method for creating or accessing VariableProperties.
      *
-     * @see getProperty
-     *
      * @param string $name Property name
+     *
+     * @see getProperty
      */
     public function offsetGet($name): VariableProperty
     {
@@ -97,10 +97,10 @@ class Variable extends BaseVariable implements \ArrayAccess
     /**
      * Fluent interface method for setting default a VariableProperty value.
      *
-     * @see setValue
-     *
      * @param string $name  Property name
      * @param mixed  $value The default Variable value
+     *
+     * @see setValue
      */
     public function offsetSet($name, $value): void
     {
@@ -404,11 +404,11 @@ class Variable extends BaseVariable implements \ArrayAccess
     /**
      * Magic method to apply operators registered with RuleBuilder.
      *
-     * @see RuleBuilder::registerOperatorNamespace
+     * @return Operator|self
      *
      * @throws \LogicException if operator is not registered
      *
-     * @return Operator|self
+     * @see RuleBuilder::registerOperatorNamespace
      */
     public function __call(string $name, array $args)
     {

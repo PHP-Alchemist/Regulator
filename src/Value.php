@@ -21,7 +21,7 @@ namespace Ruler;
  */
 class Value
 {
-    protected $value;
+    protected mixed $value;
 
     /**
      * Value constructor.
@@ -50,7 +50,7 @@ class Value
      *
      * @return mixed
      */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }

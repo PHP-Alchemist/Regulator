@@ -2,6 +2,7 @@
 
 namespace Ruler\Test\Operator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ruler\Context;
 use Ruler\Operator;
@@ -31,9 +32,7 @@ class IntersectTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider intersectData
-     */
+    #[DataProvider('intersectData')]
     public function testIntersect($a, $b, $result)
     {
         $varA = new Variable('a', $a);
@@ -47,7 +46,7 @@ class IntersectTest extends TestCase
         );
     }
 
-    public function intersectData()
+    public static function intersectData()
     {
         return [
             [6, 2, []],
