@@ -208,6 +208,18 @@ class Set extends Value implements \Countable
     }
 
     /**
+     * Comparison to determine if both arrays contain an intersection.
+     */
+    public function containsAny(self $set): bool
+    {
+        if ((\is_countable($set->getValue()) ? \count($set->getValue()) : 0) > (\is_countable($this->getValue()) ? \count($this->getValue()) : 0)) {
+            return false;
+        }
+
+        return !\empty(\array_intersect($set->getValue(), $this->getValue()));
+    }
+
+    /**
      * Contains Subset comparison.
      */
     public function containsSubset(self $set): bool
