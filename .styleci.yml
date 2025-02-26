@@ -2,20 +2,19 @@ risky: true
 
 preset: symfony
 
-enabled:
-  - align_double_arrow
-  - native_function_invocation
-  - ordered_use
-  - strict
+tab-width: 4
+use-tabs: false
 
 disabled:
-  - native_function_invocation_symfony
-  - no_superfluous_phpdoc_tags_symfony
-  - pow_to_exponentiation
-  - pre_increment
-  - unalign_double_arrow
-  - yoda_style
+  - return_type_declaration
+  - unalign_equals
+
+enabled:
+  - align_equals
+  - no_blank_lines_after_return
 
 finder:
   name:
     - "*.php"
+
+
