@@ -20,8 +20,8 @@ class NotSameAsTest extends TestCase
 
     public function testConstructorAndEvaluation()
     {
-        $varA = new Variable('a', 1);
-        $varB = new Variable('b', 2);
+        $varA    = new Variable('a', 1);
+        $varB    = new Variable('b', 2);
         $context = new Context();
 
         $op = new Operator\NotSameAs($varA, $varB);

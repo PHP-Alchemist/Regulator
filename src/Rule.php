@@ -33,7 +33,7 @@ class Rule implements Proposition
     public function __construct(Proposition $condition, $action = null)
     {
         $this->condition = $condition;
-        $this->action = $action;
+        $this->action    = $action;
     }
 
     /**

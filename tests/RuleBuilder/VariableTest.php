@@ -12,14 +12,14 @@ class VariableTest extends TestCase
     public function testConstructor()
     {
         $name = 'evil';
-        $var = new Variable(new RuleBuilder(), $name);
+        $var  = new Variable(new RuleBuilder(), $name);
         $this->assertEquals($name, $var->getName());
         $this->assertNull($var->getValue());
     }
 
     public function testGetSetValue()
     {
-        $values = \explode(', ', 'Plug it, play it, burn it, rip it, drag and drop it, zip, unzip it');
+        $values = explode(', ', 'Plug it, play it, burn it, rip it, drag and drop it, zip, unzip it');
 
         $variable = new Variable(new RuleBuilder(), 'technologic');
         foreach ($values as $valueString) {
@@ -31,8 +31,8 @@ class VariableTest extends TestCase
     public function testPrepareValue()
     {
         $values = [
-            'one'   => 'Foo',
-            'two'   => 'BAR',
+            'one' => 'Foo',
+            'two' => 'BAR',
             'three' => function () {
                 return 'baz';
             },
@@ -40,7 +40,7 @@ class VariableTest extends TestCase
 
         $context = new Context($values);
 
-        $rb = new RuleBuilder();
+        $rb   = new RuleBuilder();
         $varA = new Variable($rb, 'four', 'qux');
         $this->assertInstanceOf(\Ruler\Value::class, $varA->prepareValue($context));
         $this->assertEquals(
@@ -72,7 +72,7 @@ class VariableTest extends TestCase
 
     public function testFluentInterfaceHelpersAndAnonymousVariables()
     {
-        $rb = new RuleBuilder();
+        $rb      = new RuleBuilder();
         $context = new Context([
             'a' => 1,
             'b' => 2,
@@ -121,46 +121,46 @@ class VariableTest extends TestCase
         $this->assertTrue($varA->notEqualTo(0)->evaluate($context));
         $this->assertTrue($varA->notEqualTo(2)->evaluate($context));
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varA->add(3));
+        $this->assertInstanceof(Variable::class, $varA->add(3));
         $this->assertInstanceof(\Ruler\Operator\Addition::class, $varA->add(3)->getValue());
         $this->assertInstanceof(\Ruler\Value::class, $varA->add(3)->prepareValue($context));
         $this->assertEquals(4, $varA->add(3)->prepareValue($context)->getValue());
         $this->assertEquals(0, $varA->add(-1)->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varE->ceil());
+        $this->assertInstanceof(Variable::class, $varE->ceil());
         $this->assertInstanceof(\Ruler\Operator\Ceil::class, $varE->ceil()->getValue());
         $this->assertEquals(2, $varE->ceil()->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varB->divide(3));
+        $this->assertInstanceof(Variable::class, $varB->divide(3));
         $this->assertInstanceof(\Ruler\Operator\Division::class, $varB->divide(3)->getValue());
         $this->assertEquals(1, $varB->divide(2)->prepareValue($context)->getValue());
         $this->assertEquals(-2, $varB->divide(-1)->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varE->floor());
+        $this->assertInstanceof(Variable::class, $varE->floor());
         $this->assertInstanceof(\Ruler\Operator\Floor::class, $varE->floor()->getValue());
         $this->assertEquals(1, $varE->floor()->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varA->modulo(3));
+        $this->assertInstanceof(Variable::class, $varA->modulo(3));
         $this->assertInstanceof(\Ruler\Operator\Modulo::class, $varA->modulo(3)->getValue());
         $this->assertEquals(1, $varA->modulo(3)->prepareValue($context)->getValue());
         $this->assertEquals(0, $varB->modulo(2)->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varA->multiply(3));
+        $this->assertInstanceof(Variable::class, $varA->multiply(3));
         $this->assertInstanceof(\Ruler\Operator\Multiplication::class, $varA->multiply(3)->getValue());
         $this->assertEquals(6, $varB->multiply(3)->prepareValue($context)->getValue());
         $this->assertEquals(-2, $varB->multiply(-1)->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varA->negate());
+        $this->assertInstanceof(Variable::class, $varA->negate());
         $this->assertInstanceof(\Ruler\Operator\Negation::class, $varA->negate()->getValue());
         $this->assertEquals(-1, $varA->negate()->prepareValue($context)->getValue());
         $this->assertEquals(-2, $varB->negate()->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varA->subtract(3));
+        $this->assertInstanceof(Variable::class, $varA->subtract(3));
         $this->assertInstanceof(\Ruler\Operator\Subtraction::class, $varA->subtract(3)->getValue());
         $this->assertEquals(-2, $varA->subtract(3)->prepareValue($context)->getValue());
         $this->assertEquals(2, $varA->subtract(-1)->prepareValue($context)->getValue());
 
-        $this->assertInstanceof(\Ruler\RuleBuilder\Variable::class, $varA->exponentiate(3));
+        $this->assertInstanceof(Variable::class, $varA->exponentiate(3));
         $this->assertInstanceof(\Ruler\Operator\Exponentiate::class, $varA->exponentiate(3)->getValue());
         $this->assertEquals(1, $varA->exponentiate(3)->prepareValue($context)->getValue());
         $this->assertEquals(1, $varA->exponentiate(-1)->prepareValue($context)->getValue());

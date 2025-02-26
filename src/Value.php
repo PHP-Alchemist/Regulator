@@ -39,16 +39,14 @@ class Value
     public function __toString(): string
     {
         if (\is_object($this->value)) {
-            return \spl_object_hash($this->value);
+            return spl_object_hash($this->value);
         } else {
-            return \serialize($this->value);
+            return serialize($this->value);
         }
     }
 
     /**
      * Return the value.
-     *
-     * @return mixed
      */
     public function getValue(): mixed
     {
@@ -90,7 +88,7 @@ class Value
      */
     public function stringContains(self $value): bool
     {
-        return \strpos($this->value, (string) $value->getValue()) !== false;
+        return false !== strpos($this->value, (string) $value->getValue());
     }
 
     /**
@@ -100,7 +98,7 @@ class Value
      */
     public function stringContainsInsensitive(self $value): bool
     {
-        return \stripos($this->value, (string) $value->getValue()) !== false;
+        return false !== stripos($this->value, (string) $value->getValue());
     }
 
     /**
@@ -125,7 +123,7 @@ class Value
 
     public function add(self $value)
     {
-        if (!\is_numeric($this->value) || !\is_numeric($value->getValue())) {
+        if (!is_numeric($this->value) || !is_numeric($value->getValue())) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
@@ -134,7 +132,7 @@ class Value
 
     public function divide(self $value)
     {
-        if (!\is_numeric($this->value) || !\is_numeric($value->getValue())) {
+        if (!is_numeric($this->value) || !is_numeric($value->getValue())) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
         if (0 === $value->getValue()) {
@@ -146,7 +144,7 @@ class Value
 
     public function modulo(self $value)
     {
-        if (!\is_numeric($this->value) || !\is_numeric($value->getValue())) {
+        if (!is_numeric($this->value) || !is_numeric($value->getValue())) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
         if (0 === $value->getValue()) {
@@ -158,7 +156,7 @@ class Value
 
     public function multiply(self $value)
     {
-        if (!\is_numeric($this->value) || !\is_numeric($value->getValue())) {
+        if (!is_numeric($this->value) || !is_numeric($value->getValue())) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
@@ -167,7 +165,7 @@ class Value
 
     public function subtract(self $value)
     {
-        if (!\is_numeric($this->value) || !\is_numeric($value->getValue())) {
+        if (!is_numeric($this->value) || !is_numeric($value->getValue())) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
@@ -176,7 +174,7 @@ class Value
 
     public function negate()
     {
-        if (!\is_numeric($this->value)) {
+        if (!is_numeric($this->value)) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
@@ -185,25 +183,25 @@ class Value
 
     public function ceil()
     {
-        if (!\is_numeric($this->value)) {
+        if (!is_numeric($this->value)) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
-        return (int) \ceil($this->value);
+        return (int) ceil($this->value);
     }
 
     public function floor()
     {
-        if (!\is_numeric($this->value)) {
+        if (!is_numeric($this->value)) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
-        return (int) \floor($this->value);
+        return (int) floor($this->value);
     }
 
     public function exponentiate(self $value)
     {
-        if (!\is_numeric($this->value) || !\is_numeric($value->getValue())) {
+        if (!is_numeric($this->value) || !is_numeric($value->getValue())) {
             throw new \RuntimeException('Arithmetic: values must be numeric');
         }
 
@@ -218,11 +216,11 @@ class Value
      */
     public function startsWith(self $value, bool $insensitive = false): bool
     {
-        $value = $value->getValue();
+        $value       = $value->getValue();
         $valueLength = \strlen($value);
 
         if (!empty($this->value) && !empty($value) && \strlen($this->value) >= $valueLength) {
-            return \substr_compare($this->value, $value, 0, $valueLength, $insensitive) === 0;
+            return 0 === substr_compare($this->value, $value, 0, $valueLength, $insensitive);
         }
 
         return false;
@@ -236,11 +234,11 @@ class Value
      */
     public function endsWith(self $value, bool $insensitive = false): bool
     {
-        $value = $value->getValue();
+        $value       = $value->getValue();
         $valueLength = \strlen($value);
 
         if (!empty($this->value) && !empty($value) && \strlen($this->value) >= $valueLength) {
-            return \substr_compare($this->value, $value, -$valueLength, $valueLength, $insensitive) === 0;
+            return 0 === substr_compare($this->value, $value, -$valueLength, $valueLength, $insensitive);
         }
 
         return false;

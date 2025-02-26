@@ -33,7 +33,7 @@ class Variable implements VariableOperand
      */
     public function __construct(?string $name = null, mixed $value = null)
     {
-        $this->name = $name;
+        $this->name  = $name;
         $this->value = $value;
     }
 

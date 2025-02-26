@@ -21,7 +21,7 @@ namespace Ruler;
  */
 class RuleBuilder implements \ArrayAccess
 {
-    private array $variables = [];
+    private array $variables          = [];
     private array $operatorNamespaces = [];
 
     /**
@@ -145,14 +145,14 @@ class RuleBuilder implements \ArrayAccess
      */
     public function findOperator(string $name): string
     {
-        $operator = \ucfirst($name);
-        foreach (\array_keys($this->operatorNamespaces) as $namespace) {
+        $operator = ucfirst($name);
+        foreach (array_keys($this->operatorNamespaces) as $namespace) {
             $class = $namespace.'\\'.$operator;
-            if (\class_exists($class)) {
+            if (class_exists($class)) {
                 return $class;
             }
         }
 
-        throw new \LogicException(\sprintf('Unknown operator: "%s"', $name));
+        throw new \LogicException(sprintf('Unknown operator: "%s"', $name));
     }
 }

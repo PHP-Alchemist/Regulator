@@ -24,8 +24,8 @@ class StringContainsTest extends TestCase
      */
     public function testContains($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\StringContains($varA, $varB);
@@ -35,8 +35,8 @@ class StringContainsTest extends TestCase
     #[DataProvider('containsData')]
     public function testDoesNotContain($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\StringDoesNotContain($varA, $varB);

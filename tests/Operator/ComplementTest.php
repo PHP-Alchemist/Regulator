@@ -21,8 +21,8 @@ class ComplementTest extends TestCase
 
     public function testInvalidData()
     {
-        $varA = new Variable('a', 'string');
-        $varB = new Variable('b', 'blah');
+        $varA    = new Variable('a', 'string');
+        $varB    = new Variable('b', 'blah');
         $context = new Context();
 
         $op = new Operator\Complement($varA, $varB);
@@ -35,8 +35,8 @@ class ComplementTest extends TestCase
     #[DataProvider('complementData')]
     public function testComplement($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\Complement($varA, $varB);

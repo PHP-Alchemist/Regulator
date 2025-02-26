@@ -22,7 +22,7 @@ class NegationTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Arithmetic: values must be numeric');
-        $varA = new Variable('a', 'string');
+        $varA    = new Variable('a', 'string');
         $context = new Context();
 
         $op = new Operator\Negation($varA);
@@ -32,7 +32,7 @@ class NegationTest extends TestCase
     #[DataProvider('negateData')]
     public function testSubtract($a, $result)
     {
-        $varA = new Variable('a', $a);
+        $varA    = new Variable('a', $a);
         $context = new Context();
 
         $op = new Operator\Negation($varA);

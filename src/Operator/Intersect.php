@@ -31,7 +31,7 @@ class Intersect extends VariableOperator implements VariableOperand
             if (!$intersect instanceof Set) {
                 $intersect = $operand->prepareValue($context)->getSet();
             } else {
-                $set = $operand->prepareValue($context)->getSet();
+                $set       = $operand->prepareValue($context)->getSet();
                 $intersect = $intersect->intersect($set);
             }
         }

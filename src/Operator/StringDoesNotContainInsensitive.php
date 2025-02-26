@@ -31,7 +31,7 @@ class StringDoesNotContainInsensitive extends VariableOperator implements Propos
         /** @var VariableOperand $right */
         [$left, $right] = $this->getOperands();
 
-        return $left->prepareValue($context)->stringContainsInsensitive($right->prepareValue($context)) === false;
+        return false === $left->prepareValue($context)->stringContainsInsensitive($right->prepareValue($context));
     }
 
     protected function getOperandCardinality()

@@ -28,7 +28,7 @@ class Union extends VariableOperator implements VariableOperand
         $union = new Set([]);
         /** @var VariableOperand $operand */
         foreach ($this->getOperands() as $operand) {
-            $set = $operand->prepareValue($context)->getSet();
+            $set   = $operand->prepareValue($context)->getSet();
             $union = $union->union($set);
         }
 

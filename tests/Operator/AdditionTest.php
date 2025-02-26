@@ -23,8 +23,8 @@ class AdditionTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Arithmetic: values must be numeric');
-        $varA = new Variable('a', 'string');
-        $varB = new Variable('b', 'blah');
+        $varA    = new Variable('a', 'string');
+        $varB    = new Variable('b', 'blah');
         $context = new Context();
 
         $op = new Operator\Addition($varA, $varB);
@@ -34,8 +34,8 @@ class AdditionTest extends TestCase
     #[DataProvider('additionData')]
     public function testAddition($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\Addition($varA, $varB);

@@ -46,8 +46,8 @@ class ContextTest extends TestCase
     public function testConstructor()
     {
         $facts = [
-            'name'      => 'Mint Chip',
-            'type'      => 'Ice Cream',
+            'name' => 'Mint Chip',
+            'type' => 'Ice Cream',
             'delicious' => function () {
                 return true;
             },
@@ -67,7 +67,7 @@ class ContextTest extends TestCase
 
     public function testWithString()
     {
-        $context = new Context();
+        $context          = new Context();
         $context['param'] = 'value';
 
         $this->assertEquals('value', $context['param']);
@@ -75,7 +75,7 @@ class ContextTest extends TestCase
 
     public function testWithClosure()
     {
-        $context = new Context();
+        $context         = new Context();
         $context['fact'] = function () {
             return new Fact();
         };
@@ -85,7 +85,7 @@ class ContextTest extends TestCase
 
     public function testFactsShouldBeDifferent()
     {
-        $context = new Context();
+        $context         = new Context();
         $context['fact'] = function () {
             return new Fact();
         };
@@ -101,7 +101,7 @@ class ContextTest extends TestCase
 
     public function testShouldPassContextAsParameter()
     {
-        $context = new Context();
+        $context         = new Context();
         $context['fact'] = function () {
             return new Fact();
         };
@@ -115,9 +115,9 @@ class ContextTest extends TestCase
 
     public function testIsset()
     {
-        $context = new Context();
+        $context          = new Context();
         $context['param'] = 'value';
-        $context['fact'] = function () {
+        $context['fact']  = function () {
             return new Fact();
         };
 
@@ -131,7 +131,7 @@ class ContextTest extends TestCase
 
     public function testConstructorInjection()
     {
-        $params = ['param' => 'value'];
+        $params  = ['param' => 'value'];
         $context = new Context($params);
 
         $this->assertSame($params['param'], $context['param']);
@@ -147,16 +147,16 @@ class ContextTest extends TestCase
 
     public function testOffsetGetHonorsNullValues()
     {
-        $context = new Context();
+        $context        = new Context();
         $context['foo'] = null;
         $this->assertNull($context['foo']);
     }
 
     public function testUnset()
     {
-        $context = new Context();
+        $context          = new Context();
         $context['param'] = 'value';
-        $context['fact'] = function () {
+        $context['fact']  = function () {
             return new Fact();
         };
 
@@ -168,7 +168,7 @@ class ContextTest extends TestCase
     #[DataProvider('factDefinitionProvider')]
     public function testShare($fact)
     {
-        $context = new Context();
+        $context                = new Context();
         $context['shared_fact'] = $context->share($fact);
 
         $factOne = $context['shared_fact'];
@@ -183,7 +183,7 @@ class ContextTest extends TestCase
     #[DataProvider('factDefinitionProvider')]
     public function testProtect($fact)
     {
-        $context = new Context();
+        $context              = new Context();
         $context['protected'] = $context->protect($fact);
 
         $this->assertSame($fact, $context['protected']);
@@ -191,21 +191,21 @@ class ContextTest extends TestCase
 
     public function testGlobalFunctionNameAsParameterValue()
     {
-        $context = new Context();
+        $context                    = new Context();
         $context['global_function'] = 'strlen';
         $this->assertSame('strlen', $context['global_function']);
     }
 
     public function testRaw()
     {
-        $context = new Context();
+        $context         = new Context();
         $context['fact'] = $definition = function () { return 'foo'; };
         $this->assertSame($definition, $context->raw('fact'));
     }
 
     public function testRawHonorsNullValues()
     {
-        $context = new Context();
+        $context        = new Context();
         $context['foo'] = null;
         $this->assertNull($context->raw('foo'));
     }
@@ -220,7 +220,7 @@ class ContextTest extends TestCase
 
     public function testKeys()
     {
-        $context = new Context();
+        $context        = new Context();
         $context['foo'] = 123;
         $context['bar'] = 123;
 
@@ -230,7 +230,7 @@ class ContextTest extends TestCase
     /** @test */
     public function settingAnInvokableObjectShouldTreatItAsFactory()
     {
-        $context = new Context();
+        $context              = new Context();
         $context['invokable'] = new Invokable();
 
         $this->assertInstanceOf(Fact::class, $context['invokable']);
@@ -239,7 +239,7 @@ class ContextTest extends TestCase
     /** @test */
     public function settingNonInvokableObjectShouldTreatItAsParameter()
     {
-        $context = new Context();
+        $context                  = new Context();
         $context['non_invokable'] = new Fact();
 
         $this->assertInstanceOf(Fact::class, $context['non_invokable']);
@@ -281,7 +281,7 @@ class ContextTest extends TestCase
     {
         return [
             [function ($value) {
-                $fact = new Fact();
+                $fact        = new Fact();
                 $fact->value = $value;
 
                 return $fact;

@@ -31,7 +31,7 @@ class NotSameAs extends VariableOperator implements Proposition
         /** @var VariableOperand $right */
         [$left, $right] = $this->getOperands();
 
-        return $left->prepareValue($context)->sameAs($right->prepareValue($context)) === false;
+        return false === $left->prepareValue($context)->sameAs($right->prepareValue($context));
     }
 
     protected function getOperandCardinality()

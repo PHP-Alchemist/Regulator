@@ -11,7 +11,7 @@ class ValueTest extends TestCase
     public function testConstructor()
     {
         $valueString = 'technologic';
-        $value = new Value($valueString);
+        $value       = new Value($valueString);
         $this->assertEquals($valueString, $value->getValue());
     }
 

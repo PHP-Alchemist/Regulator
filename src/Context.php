@@ -40,10 +40,10 @@ namespace Ruler;
  */
 class Context implements \ArrayAccess
 {
-    private array $keys = [];
+    private array $keys   = [];
     private array $values = [];
     private array $frozen = [];
-    private array $raw = [];
+    private array $raw    = [];
 
     private $shared;
     private $protected;
@@ -58,7 +58,7 @@ class Context implements \ArrayAccess
      */
     public function __construct(array $values = [])
     {
-        $this->shared = new \SplObjectStorage();
+        $this->shared    = new \SplObjectStorage();
         $this->protected = new \SplObjectStorage();
 
         foreach ($values as $key => $value) {
@@ -89,7 +89,7 @@ class Context implements \ArrayAccess
     public function offsetGet($name)
     {
         if (!$this->offsetExists($name)) {
-            throw new \InvalidArgumentException(\sprintf('Fact "%s" is not defined.', $name));
+            throw new \InvalidArgumentException(sprintf('Fact "%s" is not defined.', $name));
         }
 
         $value = $this->values[$name];
@@ -102,7 +102,7 @@ class Context implements \ArrayAccess
         // If this is a shared value, resolve, freeze, and return the result
         if ($this->shared->contains($value)) {
             $this->frozen[$name] = true;
-            $this->raw[$name] = $value;
+            $this->raw[$name]    = $value;
 
             return $this->values[$name] = $value($this);
         }
@@ -125,10 +125,10 @@ class Context implements \ArrayAccess
     public function offsetSet($name, $value): void
     {
         if (isset($this->frozen[$name])) {
-            throw new \RuntimeException(\sprintf('Cannot override frozen fact "%s".', $name));
+            throw new \RuntimeException(sprintf('Cannot override frozen fact "%s".', $name));
         }
 
-        $this->keys[$name] = true;
+        $this->keys[$name]   = true;
         $this->values[$name] = $value;
     }
 
@@ -207,7 +207,7 @@ class Context implements \ArrayAccess
     public function raw($name)
     {
         if (!$this->offsetExists($name)) {
-            throw new \InvalidArgumentException(\sprintf('Fact "%s" is not defined.', $name));
+            throw new \InvalidArgumentException(sprintf('Fact "%s" is not defined.', $name));
         }
 
         if (isset($this->frozen[$name])) {
@@ -222,7 +222,7 @@ class Context implements \ArrayAccess
      */
     public function keys(): array
     {
-        return \array_keys($this->keys);
+        return array_keys($this->keys);
     }
 
     /**

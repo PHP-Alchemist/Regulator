@@ -31,8 +31,8 @@ class DoesNotContainSubset extends VariableOperator implements Proposition
         /** @var VariableOperand $right */
         [$left, $right] = $this->getOperands();
 
-        return $left->prepareValue($context)->getSet()
-            ->containsSubset($right->prepareValue($context)->getSet()) === false;
+        return false === $left->prepareValue($context)->getSet()
+            ->containsSubset($right->prepareValue($context)->getSet());
     }
 
     protected function getOperandCardinality()

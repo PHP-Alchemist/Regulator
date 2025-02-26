@@ -23,8 +23,8 @@ class ModuloTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Arithmetic: values must be numeric');
-        $varA = new Variable('a', 'string');
-        $varB = new Variable('b', 'blah');
+        $varA    = new Variable('a', 'string');
+        $varB    = new Variable('b', 'blah');
         $context = new Context();
 
         $op = new Operator\Modulo($varA, $varB);
@@ -35,8 +35,8 @@ class ModuloTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Division by zero');
-        $varA = new Variable('a', \random_int(1, 100));
-        $varB = new Variable('b', 0);
+        $varA    = new Variable('a', random_int(1, 100));
+        $varB    = new Variable('b', 0);
         $context = new Context();
 
         $op = new Operator\Modulo($varA, $varB);
@@ -46,8 +46,8 @@ class ModuloTest extends TestCase
     #[DataProvider('moduloData')]
     public function testModulo($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\Modulo($varA, $varB);

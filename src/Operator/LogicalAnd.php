@@ -28,7 +28,7 @@ class LogicalAnd extends LogicalOperator
     {
         /** @var Proposition $operand */
         foreach ($this->getOperands() as $operand) {
-            if ($operand->evaluate($context) === false) {
+            if (false === $operand->evaluate($context)) {
                 return false;
             }
         }

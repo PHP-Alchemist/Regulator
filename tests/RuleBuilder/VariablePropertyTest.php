@@ -20,7 +20,7 @@ class VariablePropertyTest extends TestCase
 
     public function testGetSetValue()
     {
-        $values = \explode(', ', 'Plug it, play it, burn it, rip it, drag and drop it, zip, unzip it');
+        $values = explode(', ', 'Plug it, play it, burn it, rip it, drag and drop it, zip, unzip it');
 
         $prop = new VariableProperty(new Variable(new RuleBuilder()), 'technologic');
         foreach ($values as $valueString) {
@@ -135,15 +135,15 @@ class VariablePropertyTest extends TestCase
         $this->assertInstanceOf(\Ruler\Operator\SetDoesNotContain::class, $varC->setDoesNotContain(1));
         $this->assertTrue($varC->setDoesNotContain($varB)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\RuleBuilder\VariableProperty::class, $varD['bar']);
+        $this->assertInstanceOf(VariableProperty::class, $varD['bar']);
         $this->assertEquals($varD['foo']->getName(), 'foo');
         $this->assertTrue($varD['foo']->equalTo(1)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\RuleBuilder\VariableProperty::class, $varD['foo']);
+        $this->assertInstanceOf(VariableProperty::class, $varD['foo']);
         $this->assertEquals($varD['bar']->getName(), 'bar');
         $this->assertTrue($varD['bar']->equalTo(2)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\RuleBuilder\VariableProperty::class, $varD['baz']['qux']);
+        $this->assertInstanceOf(VariableProperty::class, $varD['baz']['qux']);
         $this->assertEquals($varD['baz']['qux']->getName(), 'qux');
         $this->assertTrue($varD['baz']['qux']->equalTo(3)->evaluate($context));
 

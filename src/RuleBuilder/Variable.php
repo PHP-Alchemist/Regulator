@@ -38,9 +38,8 @@ class Variable extends BaseVariable implements \ArrayAccess
     /**
      * RuleBuilder Variable constructor.
      *
-     * @param RuleBuilder $ruleBuilder
-     * @param string|null $name        Variable name (default: null)
-     * @param mixed       $value       Default Variable value (default: null)
+     * @param string|null $name  Variable name (default: null)
+     * @param mixed       $value Default Variable value (default: null)
      */
     public function __construct(RuleBuilder $ruleBuilder, ?string $name = null, mixed $value = null)
     {
@@ -348,7 +347,7 @@ class Variable extends BaseVariable implements \ArrayAccess
     private function applySetOperator(string $name, array $args): self
     {
         $reflection = new \ReflectionClass('\\Ruler\\Operator\\'.$name);
-        \array_unshift($args, $this);
+        array_unshift($args, $this);
 
         return $this->wrap($reflection->newInstanceArgs($args));
     }
@@ -413,8 +412,8 @@ class Variable extends BaseVariable implements \ArrayAccess
     public function __call(string $name, array $args)
     {
         $reflection = new \ReflectionClass($this->ruleBuilder->findOperator($name));
-        $args = \array_map([$this, 'asVariable'], $args);
-        \array_unshift($args, $this);
+        $args       = array_map([$this, 'asVariable'], $args);
+        array_unshift($args, $this);
 
         $op = $reflection->newInstanceArgs($args);
 
