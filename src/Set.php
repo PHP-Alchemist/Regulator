@@ -212,11 +212,11 @@ class Set extends Value implements \Countable
      */
     public function containsAny(self $set): bool
     {
-        if ((\is_countable($set->getValue()) ? \count($set->getValue()) : 0) > (\is_countable($this->getValue()) ? \count($this->getValue()) : 0)) {
+        if ((is_countable($set->getValue()) ? \count($set->getValue()) : 0) > (is_countable($this->getValue()) ? \count($this->getValue()) : 0)) {
             return false;
         }
 
-        return !\empty(\array_intersect($set->getValue(), $this->getValue()));
+        return !empty(array_intersect($set->getValue(), $this->getValue()));
     }
 
     /**
