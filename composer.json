@@ -1,8 +1,8 @@
 {
-    "name": "ruler/ruler",
-    "description": "A simple stateless production rules engine for modern PHP.",
+    "name": "php-alchemist/regulator",
+    "description": "A simple stateless production rules engine for modern PHP (Based on ruler/ruler).",
     "keywords": ["rules", "engine"],
-    "homepage": "https://github.com/bobthecow/Ruler",
+    "homepage": "https://github.com/PHP-Alchemist/Regulator",
     "license": "MIT",
     "require": {
         "php": ">=8.1"
@@ -25,6 +25,11 @@
             "name": "Justin Hileman",
             "email": "justin@justinhileman.info",
             "homepage": "http://justinhileman.com/"
+        },
+        {
+            "name": "Micah Breedlove",
+            "email": "druid628@gmail.com",
+            "homepage": "http://github.com/druid628"
         }
     ]
 }
