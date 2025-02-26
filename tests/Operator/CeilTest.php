@@ -22,7 +22,7 @@ class CeilTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Arithmetic: values must be numeric');
-        $varA = new Variable('a', 'string');
+        $varA    = new Variable('a', 'string');
         $context = new Context();
 
         $op = new Operator\Ceil($varA);
@@ -32,7 +32,7 @@ class CeilTest extends TestCase
     #[DataProvider('ceilingData')]
     public function testCeiling($a, $result)
     {
-        $varA = new Variable('a', $a);
+        $varA    = new Variable('a', $a);
         $context = new Context();
 
         $op = new Operator\Ceil($varA);

@@ -23,7 +23,7 @@ class MaxTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('max: all values must be numeric');
-        $var = new Variable('a', $datum);
+        $var     = new Variable('a', $datum);
         $context = new Context();
 
         $op = new Operator\Max($var);
@@ -43,7 +43,7 @@ class MaxTest extends TestCase
     #[DataProvider('maxData')]
     public function testMax($a, $result)
     {
-        $var = new Variable('a', $a);
+        $var     = new Variable('a', $a);
         $context = new Context();
 
         $op = new Operator\Max($var);

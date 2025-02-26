@@ -16,8 +16,8 @@ namespace Ruler;
  */
 abstract class Operator
 {
-    public const UNARY = 'UNARY';
-    public const BINARY = 'BINARY';
+    public const UNARY    = 'UNARY';
+    public const BINARY   = 'BINARY';
     public const MULTIPLE = 'MULTIPLE';
 
     protected $operands = [];

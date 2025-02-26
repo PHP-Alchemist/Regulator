@@ -22,8 +22,8 @@ class EndsWithInsensitiveTest extends TestCase
     #[DataProvider('endsWithData')]
     public function testEndsWithInsensitive($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\EndsWithInsensitive($varA, $varB);

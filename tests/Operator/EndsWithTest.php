@@ -22,8 +22,8 @@ class EndsWithTest extends TestCase
     #[DataProvider('endsWithData')]
     public function testEndsWith($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\EndsWith($varA, $varB);

@@ -11,13 +11,13 @@ class SetTest extends TestCase
 {
     public function testComplicated()
     {
-        $rb = new RuleBuilder();
+        $rb      = new RuleBuilder();
         $context = new Context([
             'expected' => 'a',
-            'foo'      => ['a', 'z'],
-            'bar'      => ['z', 'b'],
-            'baz'      => ['a', 'z', 'b', 'q'],
-            'bob'      => ['a', 'd'],
+            'foo' => ['a', 'z'],
+            'bar' => ['z', 'b'],
+            'baz' => ['a', 'z', 'b', 'q'],
+            'bob' => ['a', 'd'],
         ]);
 
         $this->assertTrue(
@@ -81,8 +81,8 @@ class SetTest extends TestCase
     #[DataProvider('setUnion')]
     public function testUnion($a, $b, $expected)
     {
-        $rb = new RuleBuilder();
-        $context = new Context(\compact('a', 'b', 'expected'));
+        $rb      = new RuleBuilder();
+        $context = new Context(compact('a', 'b', 'expected'));
         $this->assertTrue(
             $rb->create(
                 $rb['expected']->equalTo(
@@ -136,8 +136,8 @@ class SetTest extends TestCase
     #[DataProvider('setIntersect')]
     public function testIntersect($a, $b, $expected)
     {
-        $rb = new RuleBuilder();
-        $context = new Context(\compact('a', 'b', 'expected'));
+        $rb      = new RuleBuilder();
+        $context = new Context(compact('a', 'b', 'expected'));
         $this->assertTrue(
             $rb->create(
                 $rb['expected']->equalTo(
@@ -191,8 +191,8 @@ class SetTest extends TestCase
     #[DataProvider('setComplement')]
     public function testComplement($a, $b, $expected)
     {
-        $rb = new RuleBuilder();
-        $context = new Context(\compact('a', 'b', 'expected'));
+        $rb      = new RuleBuilder();
+        $context = new Context(compact('a', 'b', 'expected'));
         $this->assertTrue(
             $rb->create(
                 $rb['expected']->equalTo(
@@ -246,8 +246,8 @@ class SetTest extends TestCase
     #[DataProvider('setSymmetricDifference')]
     public function testSymmetricDifference($a, $b, $expected)
     {
-        $rb = new RuleBuilder();
-        $context = new Context(\compact('a', 'b', 'expected'));
+        $rb      = new RuleBuilder();
+        $context = new Context(compact('a', 'b', 'expected'));
         $this->assertTrue(
             $rb->create(
                 $rb['expected']->equalTo(

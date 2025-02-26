@@ -31,7 +31,7 @@ class Complement extends VariableOperator implements VariableOperand
             if (!$complement instanceof Set) {
                 $complement = $operand->prepareValue($context)->getSet();
             } else {
-                $set = $operand->prepareValue($context)->getSet();
+                $set        = $operand->prepareValue($context)->getSet();
                 $complement = $complement->complement($set);
             }
         }

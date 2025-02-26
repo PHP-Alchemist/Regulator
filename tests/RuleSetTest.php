@@ -13,20 +13,20 @@ class RuleSetTest extends TestCase
     public function testRulesetCreationUpdateAndExecution()
     {
         $context = new Context();
-        $true = new TrueProposition();
+        $true    = new TrueProposition();
 
         $executedActionA = false;
-        $ruleA = new Rule($true, function () use (&$executedActionA) {
+        $ruleA           = new Rule($true, function () use (&$executedActionA) {
             $executedActionA = true;
         });
 
         $executedActionB = false;
-        $ruleB = new Rule($true, function () use (&$executedActionB) {
+        $ruleB           = new Rule($true, function () use (&$executedActionB) {
             $executedActionB = true;
         });
 
         $executedActionC = false;
-        $ruleC = new Rule($true, function () use (&$executedActionC) {
+        $ruleC           = new Rule($true, function () use (&$executedActionC) {
             $executedActionC = true;
         });
 

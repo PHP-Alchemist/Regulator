@@ -36,7 +36,7 @@ class LogicalXor extends LogicalOperator
             }
         }
 
-        return $true === 1;
+        return 1 === $true;
     }
 
     protected function getOperandCardinality()

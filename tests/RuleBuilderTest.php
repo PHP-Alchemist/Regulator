@@ -13,14 +13,14 @@ class RuleBuilderTest extends TestCase
     public function testInterface()
     {
         $rb = new RuleBuilder();
-        $this->assertInstanceOf(\Ruler\RuleBuilder::class, $rb);
+        $this->assertInstanceOf(RuleBuilder::class, $rb);
         $this->assertInstanceOf(\ArrayAccess::class, $rb);
     }
 
     public function testManipulateVariablesViaArrayAccess()
     {
         $name = 'alpha';
-        $rb = new RuleBuilder();
+        $rb   = new RuleBuilder();
 
         $this->assertFalse(isset($rb[$name]));
 
@@ -44,10 +44,10 @@ class RuleBuilderTest extends TestCase
 
     public function testLogicalOperatorGeneration()
     {
-        $rb = new RuleBuilder();
+        $rb      = new RuleBuilder();
         $context = new Context();
 
-        $true = new TrueProposition();
+        $true  = new TrueProposition();
         $false = new FalseProposition();
 
         $this->assertInstanceOf(\Ruler\Operator\LogicalAnd::class, $rb->logicalAnd($true, $false));
@@ -65,10 +65,10 @@ class RuleBuilderTest extends TestCase
 
     public function testRuleCreation()
     {
-        $rb = new RuleBuilder();
+        $rb      = new RuleBuilder();
         $context = new Context();
 
-        $true = new TrueProposition();
+        $true  = new TrueProposition();
         $false = new FalseProposition();
 
         $this->assertInstanceOf(\Ruler\Rule::class, $rb->create($true));
@@ -76,7 +76,7 @@ class RuleBuilderTest extends TestCase
         $this->assertFalse($rb->create($false)->evaluate($context));
 
         $executed = false;
-        $rule = $rb->create($true, function () use (&$executed) {
+        $rule     = $rb->create($true, function () use (&$executed) {
             $executed = true;
         });
 
@@ -87,7 +87,7 @@ class RuleBuilderTest extends TestCase
 
     public function testNotAddEqualTo()
     {
-        $rb = new RuleBuilder();
+        $rb      = new RuleBuilder();
         $context = new Context([
             'A2' => 8,
             'A3' => 4,
@@ -113,7 +113,7 @@ class RuleBuilderTest extends TestCase
         $rb->registerOperatorNamespace('\Ruler\Test\Fixtures');
 
         $context = new Context(['a' => 100]);
-        $varA = $rb['a'];
+        $varA    = $rb['a'];
 
         $this->assertTrue($varA->aLotGreaterThan(1)->evaluate($context));
 

@@ -22,8 +22,8 @@ class StartsWithTest extends TestCase
     #[DataProvider('startsWithData')]
     public function testStartsWith($a, $b, $result)
     {
-        $varA = new Variable('a', $a);
-        $varB = new Variable('b', $b);
+        $varA    = new Variable('a', $a);
+        $varB    = new Variable('b', $b);
         $context = new Context();
 
         $op = new Operator\StartsWith($varA, $varB);

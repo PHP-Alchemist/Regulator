@@ -21,10 +21,10 @@ class SetTest extends TestCase
 
     public function testObjectUniqueness()
     {
-        $objectA = new \stdClass();
+        $objectA            = new \stdClass();
         $objectA->something = 'else';
-        $objectB = new \stdClass();
-        $objectB->foo = 'bar';
+        $objectB            = new \stdClass();
+        $objectB->foo       = 'bar';
 
         $set = new Set([
             $objectA,

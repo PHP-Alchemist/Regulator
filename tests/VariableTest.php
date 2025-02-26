@@ -11,14 +11,14 @@ class VariableTest extends TestCase
     public function testConstructor()
     {
         $name = 'evil';
-        $var = new Variable($name);
+        $var  = new Variable($name);
         $this->assertEquals($name, $var->getName());
         $this->assertNull($var->getValue());
     }
 
     public function testGetSetValue()
     {
-        $values = \explode(', ', 'Plug it, play it, burn it, rip it, drag and drop it, zip, unzip it');
+        $values = explode(', ', 'Plug it, play it, burn it, rip it, drag and drop it, zip, unzip it');
 
         $variable = new Variable('technologic');
         foreach ($values as $valueString) {
@@ -30,8 +30,8 @@ class VariableTest extends TestCase
     public function testPrepareValue()
     {
         $values = [
-            'one'   => 'Foo',
-            'two'   => 'BAR',
+            'one' => 'Foo',
+            'two' => 'BAR',
             'three' => function () {
                 return 'baz';
             },

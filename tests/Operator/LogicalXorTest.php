@@ -20,8 +20,8 @@ class LogicalXorTest extends TestCase
 
     public function testConstructor()
     {
-        $true = new TrueProposition();
-        $false = new FalseProposition();
+        $true    = new TrueProposition();
+        $false   = new FalseProposition();
         $context = new Context();
 
         $op = new Operator\LogicalXor([$true, $false]);
@@ -30,8 +30,8 @@ class LogicalXorTest extends TestCase
 
     public function testAddPropositionAndEvaluate()
     {
-        $true = new TrueProposition();
-        $false = new FalseProposition();
+        $true    = new TrueProposition();
+        $false   = new FalseProposition();
         $context = new Context();
 
         $op = new Operator\LogicalXor();

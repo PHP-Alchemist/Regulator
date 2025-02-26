@@ -71,11 +71,11 @@ trait VariablePropertyTrait
      */
     public function prepareValue(Context $context): Value
     {
-        $name = $this->getName();
+        $name  = $this->getName();
         $value = $this->parent->prepareValue($context)->getValue();
 
         if (\is_object($value) && !$value instanceof \Closure) {
-            if (\method_exists($value, $name)) {
+            if (method_exists($value, $name)) {
                 return $this->asValue(\call_user_func([$value, $name]));
             } elseif (isset($value->$name)) {
                 return $this->asValue($value->$name);

@@ -23,7 +23,7 @@ class MinTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('min: all values must be numeric');
-        $var = new Variable('a', $datum);
+        $var     = new Variable('a', $datum);
         $context = new Context();
 
         $op = new Operator\Min($var);
@@ -43,7 +43,7 @@ class MinTest extends TestCase
     #[DataProvider('minData')]
     public function testMin($a, $result)
     {
-        $var = new Variable('a', $a);
+        $var     = new Variable('a', $a);
         $context = new Context();
 
         $op = new Operator\Min($var);
