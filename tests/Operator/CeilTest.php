@@ -1,12 +1,12 @@
 <?php
 
-namespace Ruler\Test\Operator;
+namespace Regulator\Test\Operator;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Operator;
-use Ruler\Variable;
+use Regulator\Context;
+use Regulator\Operator;
+use Regulator\Variable;
 
 class CeilTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CeilTest extends TestCase
         $varA = new Variable('a', 1);
 
         $op = new Operator\Ceil($varA);
-        $this->assertInstanceOf(\Ruler\VariableOperand::class, $op);
+        $this->assertInstanceOf(\Regulator\VariableOperand::class, $op);
     }
 
     public function testInvalidData()

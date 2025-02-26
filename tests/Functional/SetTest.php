@@ -1,11 +1,11 @@
 <?php
 
-namespace Ruler\Test\Functional;
+namespace Regulator\Test\Functional;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\RuleBuilder;
+use Regulator\Context;
+use Regulator\RuleBuilder;
 
 class SetTest extends TestCase
 {

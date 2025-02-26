@@ -1,6 +1,6 @@
 <?php
 
-namespace Ruler\Test\Fixtures;
+namespace Regulator\Test\Fixtures;
 
 class toStringable
 {

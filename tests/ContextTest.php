@@ -22,17 +22,17 @@
  * THE SOFTWARE.
  */
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Test\Fixtures\Fact;
-use Ruler\Test\Fixtures\Invokable;
+use Regulator\Context;
+use Regulator\Test\Fixtures\Fact;
+use Regulator\Test\Fixtures\Invokable;
 
 /**
- * Ruler Context test.
+ * Regulator Context test.
  *
  * Derived from Pimple, by Fabien Potencier:
  *

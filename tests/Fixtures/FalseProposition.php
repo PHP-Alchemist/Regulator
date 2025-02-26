@@ -1,9 +1,9 @@
 <?php
 
-namespace Ruler\Test\Fixtures;
+namespace Regulator\Test\Fixtures;
 
-use Ruler\Context;
-use Ruler\Proposition;
+use Regulator\Context;
+use Regulator\Proposition;
 
 class FalseProposition implements Proposition
 {

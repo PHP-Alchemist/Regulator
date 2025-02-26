@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ruler package, an OpenSky project.
+ * This file is part of the Regulator package, an OpenSky project.
  *
  * (c) 2013 OpenSky Project Inc
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Ruler\RuleBuilder;
+namespace Regulator\RuleBuilder;
 
-use Ruler\Operator;
-use Ruler\Operator\VariableOperator;
-use Ruler\RuleBuilder;
-use Ruler\Variable as BaseVariable;
-use Ruler\VariableOperand;
+use Regulator\Operator;
+use Regulator\Operator\VariableOperator;
+use Regulator\RuleBuilder;
+use Regulator\Variable as BaseVariable;
+use Regulator\VariableOperand;
 
 /**
  * A propositional Variable.
@@ -346,7 +346,7 @@ class Variable extends BaseVariable implements \ArrayAccess
      */
     private function applySetOperator(string $name, array $args): self
     {
-        $reflection = new \ReflectionClass('\\Ruler\\Operator\\'.$name);
+        $reflection = new \ReflectionClass('\\Regulator\\Operator\\'.$name);
         array_unshift($args, $this);
 
         return $this->wrap($reflection->newInstanceArgs($args));

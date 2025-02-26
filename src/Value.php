@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ruler package, an OpenSky project.
+ * This file is part of the Regulator package, an OpenSky project.
  *
  * (c) 2011 OpenSky Project Inc
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Ruler;
+namespace Regulator;
 
 /**
- * A Ruler Value.
+ * A Regulator Value.
  *
  * A Value represents a comparable terminal value. Variables and Comparison Operators
  * are resolved to Values by applying the current Context and the default Variable value.

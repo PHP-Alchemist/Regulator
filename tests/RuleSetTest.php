@@ -1,12 +1,12 @@
 <?php
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Rule;
-use Ruler\RuleSet;
-use Ruler\Test\Fixtures\TrueProposition;
+use Regulator\Context;
+use Regulator\Rule;
+use Regulator\RuleSet;
+use Regulator\Test\Fixtures\TrueProposition;
 
 class RuleSetTest extends TestCase
 {

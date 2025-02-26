@@ -1,11 +1,11 @@
 <?php
 
-namespace Ruler\Test\Operator;
+namespace Regulator\Test\Operator;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Operator;
-use Ruler\Variable;
+use Regulator\Context;
+use Regulator\Operator;
+use Regulator\Variable;
 
 class ExtraOperatorTest extends TestCase
 {

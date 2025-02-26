@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ruler package, an OpenSky project.
+ * This file is part of the Regulator package, an OpenSky project.
  *
  * (c) 2013 OpenSky Project Inc
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Ruler\RuleBuilder;
+namespace Regulator\RuleBuilder;
 
-use Ruler\Context;
-use Ruler\Value;
-use Ruler\Variable;
+use Regulator\Context;
+use Regulator\Value;
+use Regulator\Variable;
 
 /**
  * All the guts of the VariableProperty, but none of the PHP 5.3ness.

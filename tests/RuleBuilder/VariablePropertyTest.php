@@ -1,12 +1,12 @@
 <?php
 
-namespace Ruler\Test\RuleBuilder;
+namespace Regulator\Test\RuleBuilder;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\RuleBuilder;
-use Ruler\RuleBuilder\Variable;
-use Ruler\RuleBuilder\VariableProperty;
+use Regulator\Context;
+use Regulator\RuleBuilder;
+use Regulator\RuleBuilder\Variable;
+use Regulator\RuleBuilder\VariableProperty;
 
 class VariablePropertyTest extends TestCase
 {
@@ -43,7 +43,7 @@ class VariablePropertyTest extends TestCase
         $var = new Variable(new RuleBuilder(), 'root');
 
         $propA = new VariableProperty($var, 'undefined', 'default');
-        $this->assertInstanceOf(\Ruler\Value::class, $propA->prepareValue($context));
+        $this->assertInstanceOf(\Regulator\Value::class, $propA->prepareValue($context));
         $this->assertEquals(
             'default',
             $propA->prepareValue($context)->getValue(),
@@ -89,30 +89,30 @@ class VariablePropertyTest extends TestCase
         $varG = $root['g'];
         $varH = $root['h'];
 
-        $this->assertInstanceOf(\Ruler\Operator\GreaterThan::class, $varA->greaterThan(0));
+        $this->assertInstanceOf(\Regulator\Operator\GreaterThan::class, $varA->greaterThan(0));
         $this->assertTrue($varA->greaterThan(0)->evaluate($context));
         $this->assertFalse($varA->greaterThan(2)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\GreaterThanOrEqualTo::class, $varA->greaterThanOrEqualTo(0));
+        $this->assertInstanceOf(\Regulator\Operator\GreaterThanOrEqualTo::class, $varA->greaterThanOrEqualTo(0));
         $this->assertTrue($varA->greaterThanOrEqualTo(0)->evaluate($context));
         $this->assertTrue($varA->greaterThanOrEqualTo(1)->evaluate($context));
         $this->assertFalse($varA->greaterThanOrEqualTo(2)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\LessThan::class, $varA->lessThan(0));
+        $this->assertInstanceOf(\Regulator\Operator\LessThan::class, $varA->lessThan(0));
         $this->assertTrue($varA->lessThan(2)->evaluate($context));
         $this->assertFalse($varA->lessThan(0)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\LessThanOrEqualTo::class, $varA->lessThanOrEqualTo(0));
+        $this->assertInstanceOf(\Regulator\Operator\LessThanOrEqualTo::class, $varA->lessThanOrEqualTo(0));
         $this->assertTrue($varA->lessThanOrEqualTo(1)->evaluate($context));
         $this->assertTrue($varA->lessThanOrEqualTo(2)->evaluate($context));
         $this->assertFalse($varA->lessThanOrEqualTo(0)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\EqualTo::class, $varA->equalTo(0));
+        $this->assertInstanceOf(\Regulator\Operator\EqualTo::class, $varA->equalTo(0));
         $this->assertTrue($varA->equalTo(1)->evaluate($context));
         $this->assertFalse($varA->equalTo(0)->evaluate($context));
         $this->assertFalse($varA->equalTo(2)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\NotEqualTo::class, $varA->notEqualTo(0));
+        $this->assertInstanceOf(\Regulator\Operator\NotEqualTo::class, $varA->notEqualTo(0));
         $this->assertFalse($varA->notEqualTo(1)->evaluate($context));
         $this->assertTrue($varA->notEqualTo(0)->evaluate($context));
         $this->assertTrue($varA->notEqualTo(2)->evaluate($context));
@@ -120,19 +120,19 @@ class VariablePropertyTest extends TestCase
         $this->assertFalse($varA->greaterThan($varB)->evaluate($context));
         $this->assertTrue($varA->lessThan($varB)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\StringContains::class, $varE->stringContains('ring'));
+        $this->assertInstanceOf(\Regulator\Operator\StringContains::class, $varE->stringContains('ring'));
         $this->assertTrue($varE->stringContains($varF)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\StringContainsInsensitive::class, $varE->stringContainsInsensitive('STRING'));
+        $this->assertInstanceOf(\Regulator\Operator\StringContainsInsensitive::class, $varE->stringContainsInsensitive('STRING'));
         $this->assertTrue($varE->stringContainsInsensitive($varH)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\StringDoesNotContain::class, $varE->stringDoesNotContain('cheese'));
+        $this->assertInstanceOf(\Regulator\Operator\StringDoesNotContain::class, $varE->stringDoesNotContain('cheese'));
         $this->assertTrue($varE->stringDoesNotContain($varG)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\SetContains::class, $varC->setContains(1));
+        $this->assertInstanceOf(\Regulator\Operator\SetContains::class, $varC->setContains(1));
         $this->assertTrue($varC->setContains($varA)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\SetDoesNotContain::class, $varC->setDoesNotContain(1));
+        $this->assertInstanceOf(\Regulator\Operator\SetDoesNotContain::class, $varC->setDoesNotContain(1));
         $this->assertTrue($varC->setDoesNotContain($varB)->evaluate($context));
 
         $this->assertInstanceOf(VariableProperty::class, $varD['bar']);
@@ -147,16 +147,16 @@ class VariablePropertyTest extends TestCase
         $this->assertEquals($varD['baz']['qux']->getName(), 'qux');
         $this->assertTrue($varD['baz']['qux']->equalTo(3)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\EndsWith::class, $varE->endsWith('string'));
+        $this->assertInstanceOf(\Regulator\Operator\EndsWith::class, $varE->endsWith('string'));
         $this->assertTrue($varE->endsWith($varE)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\EndsWithInsensitive::class, $varE->endsWithInsensitive('STRING'));
+        $this->assertInstanceOf(\Regulator\Operator\EndsWithInsensitive::class, $varE->endsWithInsensitive('STRING'));
         $this->assertTrue($varE->endsWithInsensitive($varE)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\StartsWith::class, $varE->startsWith('string'));
+        $this->assertInstanceOf(\Regulator\Operator\StartsWith::class, $varE->startsWith('string'));
         $this->assertTrue($varE->startsWith($varE)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\StartsWithInsensitive::class, $varE->startsWithInsensitive('STRING'));
+        $this->assertInstanceOf(\Regulator\Operator\StartsWithInsensitive::class, $varE->startsWithInsensitive('STRING'));
         $this->assertTrue($varE->startsWithInsensitive($varE)->evaluate($context));
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Set;
-use Ruler\Test\Fixtures\toStringable;
-use Ruler\Value;
+use Regulator\Set;
+use Regulator\Test\Fixtures\toStringable;
+use Regulator\Value;
 
 class SetTest extends TestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Variable;
-use Ruler\VariableProperty;
+use Regulator\Context;
+use Regulator\Variable;
+use Regulator\VariableProperty;
 
 class VariablePropertyTest extends TestCase
 {
@@ -42,7 +42,7 @@ class VariablePropertyTest extends TestCase
         $var = new Variable('root');
 
         $propA = new VariableProperty($var, 'undefined', 'default');
-        $this->assertInstanceOf(\Ruler\Value::class, $propA->prepareValue($context));
+        $this->assertInstanceOf(\Regulator\Value::class, $propA->prepareValue($context));
         $this->assertEquals(
             'default',
             $propA->prepareValue($context)->getValue(),

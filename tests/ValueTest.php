@@ -1,10 +1,10 @@
 <?php
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Ruler\Value;
+use Regulator\Value;
 
 class ValueTest extends TestCase
 {

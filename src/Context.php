@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ruler package, an OpenSky project.
+ * This file is part of the Regulator package, an OpenSky project.
  *
  * Copyright (c) 2009 Fabien Potencier
  *
@@ -24,10 +24,10 @@
  * THE SOFTWARE.
  */
 
-namespace Ruler;
+namespace Regulator;
 
 /**
- * Ruler Context.
+ * Regulator Context.
  *
  * The Context contains facts with which to evaluate a Rule or other Proposition.
  *

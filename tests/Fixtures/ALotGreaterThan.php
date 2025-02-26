@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ruler package, an OpenSky project.
+ * This file is part of the Regulator package, an OpenSky project.
  *
  * (c) 2011 OpenSky Project Inc
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Ruler\Test\Fixtures;
+namespace Regulator\Test\Fixtures;
 
-use Ruler\Context;
-use Ruler\Operator\VariableOperator;
-use Ruler\Proposition;
-use Ruler\Value;
-use Ruler\VariableOperand;
+use Regulator\Context;
+use Regulator\Operator\VariableOperator;
+use Regulator\Proposition;
+use Regulator\Value;
+use Regulator\VariableOperand;
 
 /**
  * An EqualTo comparison operator.

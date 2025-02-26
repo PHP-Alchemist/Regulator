@@ -1,12 +1,12 @@
 <?php
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\RuleBuilder;
-use Ruler\Test\Fixtures\FalseProposition;
-use Ruler\Test\Fixtures\TrueProposition;
+use Regulator\Context;
+use Regulator\RuleBuilder;
+use Regulator\Test\Fixtures\FalseProposition;
+use Regulator\Test\Fixtures\TrueProposition;
 
 class RuleBuilderTest extends TestCase
 {
@@ -27,8 +27,8 @@ class RuleBuilderTest extends TestCase
         $var = $rb[$name];
         $this->assertTrue(isset($rb[$name]));
 
-        $this->assertInstanceOf(\Ruler\Variable::class, $var);
-        $this->assertInstanceOf(\Ruler\RuleBuilder\Variable::class, $var);
+        $this->assertInstanceOf(\Regulator\Variable::class, $var);
+        $this->assertInstanceOf(\Regulator\RuleBuilder\Variable::class, $var);
         $this->assertEquals($name, $var->getName());
 
         $this->assertSame($var, $rb[$name]);
@@ -50,16 +50,16 @@ class RuleBuilderTest extends TestCase
         $true  = new TrueProposition();
         $false = new FalseProposition();
 
-        $this->assertInstanceOf(\Ruler\Operator\LogicalAnd::class, $rb->logicalAnd($true, $false));
+        $this->assertInstanceOf(\Regulator\Operator\LogicalAnd::class, $rb->logicalAnd($true, $false));
         $this->assertFalse($rb->logicalAnd($true, $false)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\LogicalOr::class, $rb->logicalOr($true, $false));
+        $this->assertInstanceOf(\Regulator\Operator\LogicalOr::class, $rb->logicalOr($true, $false));
         $this->assertTrue($rb->logicalOr($true, $false)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\LogicalNot::class, $rb->logicalNot($true));
+        $this->assertInstanceOf(\Regulator\Operator\LogicalNot::class, $rb->logicalNot($true));
         $this->assertFalse($rb->logicalNot($true)->evaluate($context));
 
-        $this->assertInstanceOf(\Ruler\Operator\LogicalXor::class, $rb->logicalXor($true, $false));
+        $this->assertInstanceOf(\Regulator\Operator\LogicalXor::class, $rb->logicalXor($true, $false));
         $this->assertTrue($rb->logicalXor($true, $false)->evaluate($context));
     }
 
@@ -71,7 +71,7 @@ class RuleBuilderTest extends TestCase
         $true  = new TrueProposition();
         $false = new FalseProposition();
 
-        $this->assertInstanceOf(\Ruler\Rule::class, $rb->create($true));
+        $this->assertInstanceOf(\Regulator\Rule::class, $rb->create($true));
         $this->assertTrue($rb->create($true)->evaluate($context));
         $this->assertFalse($rb->create($false)->evaluate($context));
 
@@ -110,7 +110,7 @@ class RuleBuilderTest extends TestCase
     public function testExternalOperators()
     {
         $rb = new RuleBuilder();
-        $rb->registerOperatorNamespace('\Ruler\Test\Fixtures');
+        $rb->registerOperatorNamespace('\Regulator\Test\Fixtures');
 
         $context = new Context(['a' => 100]);
         $varA    = $rb['a'];
@@ -126,7 +126,7 @@ class RuleBuilderTest extends TestCase
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Unknown operator: "aLotBiggerThan"');
         $rb = new RuleBuilder();
-        $rb->registerOperatorNamespace('\Ruler\Test\Fixtures');
+        $rb->registerOperatorNamespace('\Regulator\Test\Fixtures');
         $varA = $rb['a'];
 
         $varA->aLotBiggerThan(1);

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ruler package, an OpenSky project.
+ * This file is part of the Regulator package, an OpenSky project.
  *
  * (c) 2011 OpenSky Project Inc
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Ruler\Operator;
+namespace Regulator\Operator;
 
-use Ruler\Context;
-use Ruler\Proposition;
-use Ruler\VariableOperand;
+use Regulator\Context;
+use Regulator\Proposition;
+use Regulator\VariableOperand;
 
 /**
  * A EndsWith insensitive comparison operator.

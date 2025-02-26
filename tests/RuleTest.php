@@ -1,19 +1,19 @@
 <?php
 
-namespace Ruler\Test;
+namespace Regulator\Test;
 
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Rule;
-use Ruler\Test\Fixtures\CallbackProposition;
-use Ruler\Test\Fixtures\TrueProposition;
+use Regulator\Context;
+use Regulator\Rule;
+use Regulator\Test\Fixtures\CallbackProposition;
+use Regulator\Test\Fixtures\TrueProposition;
 
 class RuleTest extends TestCase
 {
     public function testInterface()
     {
         $rule = new Rule(new TrueProposition());
-        $this->assertInstanceOf(\Ruler\Proposition::class, $rule);
+        $this->assertInstanceOf(\Regulator\Proposition::class, $rule);
     }
 
     public function testConstructorEvaluationAndExecution()

@@ -1,12 +1,12 @@
 <?php
 
-namespace Ruler\Test\Operator;
+namespace Regulator\Test\Operator;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Ruler\Context;
-use Ruler\Operator;
-use Ruler\Variable;
+use Regulator\Context;
+use Regulator\Operator;
+use Regulator\Variable;
 
 class StringContainsTest extends TestCase
 {
@@ -16,7 +16,7 @@ class StringContainsTest extends TestCase
         $varB = new Variable('b', [2]);
 
         $op = new Operator\StringContains($varA, $varB);
-        $this->assertInstanceOf(\Ruler\Proposition::class, $op);
+        $this->assertInstanceOf(\Regulator\Proposition::class, $op);
     }
 
     /**
