@@ -4,13 +4,13 @@ Regulator
 ### A fork of [ruler/ruler](https://github.com/bobthecow/ruler)
 
 
-Ruler is a simple stateless production rules engine for PHP 8.1+.
+Regulator is a simple stateless production rules engine for PHP 8.1+.
 
 <!--[![Package version](http://img.shields.io/packagist/v/ruler/ruler.svg?style=flat-square)](https://packagist.org/packages/ruler/ruler)-->
 [![Unit Tests](https://github.com/PHP-Alchemist/Regulator/actions/workflows/php.yml/badge.svg?branch=main)](https://github.com/PHP-Alchemist/Regulator/actions/workflows/php.yml)
 [![StyleCI](https://github.styleci.io/repos/936373183/shield?branch=main)](https://github.styleci.io/repos/936373183?branch=main)
 
-Ruler has an easy, straightforward DSL
+Regulator has an easy, straightforward DSL
 --------------------------------------
 
 ... provided by the RuleBuilder:
@@ -65,7 +65,7 @@ $rule->execute($context); // "Yay!"
 But that doesn't sound too fun, does it?
 
 
-Things you can do with your Ruler
+Things you can do with your Regulator
 ---------------------------------
 
 ### Compare things
@@ -313,7 +313,7 @@ $rb->create(
 Access variable properties
 --------------------------
 
-As an added bonus, Ruler lets you access properties, methods and offsets on your
+As an added bonus, Regulator lets you access properties, methods and offsets on your
 Context Variable values. This can come in really handy.
 
 Say we wanted to log the current user's name if they are an administrator:
@@ -392,12 +392,12 @@ VariableProperty.
 Add your own Operators
 ----------------------
 
-If none of the default Ruler Operators fit your needs, you can write your own! Just define
+If none of the default Regulator Operators fit your needs, you can write your own! Just define
 additional operators like this:
 
 ```php
 
-namespace My\Ruler\Operators;
+namespace My\Regulator\Operators;
 
 use Ruler\Context;
 use Ruler\Operator\VariableOperator;
@@ -424,7 +424,7 @@ class ALotGreaterThan extends VariableOperator implements Proposition
 Then you can use them with RuleBuilder like this:
 
 ```php
-$rb->registerOperatorNamespace('My\Ruler\Operators');
+$rb->registerOperatorNamespace('My\Regulator\Operators');
 $rb->create(
     $rb['a']->aLotGreaterThan(10);
 );
@@ -434,14 +434,14 @@ $rb->create(
 But that's not all...
 ---------------------
 
-Check out [the test suite](https://github.com/bobthecow/Ruler/blob/master/tests/Ruler/Test/Functional/RulerTest.php)
+Check out [the test suite](https://github.com/PHP-Alchemist/Regulator/blob/master/tests/Regulator/Test/Functional/RegulatorTest.php)
 for more examples (and some hot CS 320 combinatorial logic action).
 
 
-Ruler is plumbing. Bring your own porcelain.
+Regulator is plumbing. Bring your own porcelain.
 ============================================
 
-Ruler doesn't bother itself with where Rules come from. Maybe you have a RuleManager
+Regulator doesn't bother itself with where Rules come from. Maybe you have a RuleManager
 wrapped around an ORM or ODM. Perhaps you write a simple DSL and parse static files.
 
-Whatever your flavor, Ruler will handle the logic.
+Whatever your flavor, Regulator will handle the logic.
