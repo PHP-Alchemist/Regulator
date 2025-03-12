@@ -16,5 +16,5 @@ namespace Regulator;
  */
 interface VariableOperand
 {
-    public function prepareValue(Context $context): Value;
+    public function prepareValue(Context $context): ?Value;
 }

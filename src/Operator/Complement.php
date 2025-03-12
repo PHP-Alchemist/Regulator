@@ -23,7 +23,7 @@ use Regulator\VariableOperand;
  */
 class Complement extends VariableOperator implements VariableOperand
 {
-    public function prepareValue(Context $context): Value
+    public function prepareValue(Context $context): ?Value
     {
         $complement = null;
         /** @var VariableOperand $operand */

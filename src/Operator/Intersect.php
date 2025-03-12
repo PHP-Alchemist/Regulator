@@ -23,7 +23,7 @@ use Regulator\VariableOperand;
  */
 class Intersect extends VariableOperator implements VariableOperand
 {
-    public function prepareValue(Context $context): Value
+    public function prepareValue(Context $context): ?Value
     {
         $intersect = null;
         /** @var VariableOperand $operand */

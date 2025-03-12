@@ -29,6 +29,7 @@ use Regulator\VariableOperand;
  * kinds of awkward object instantiation.
  *
  * @author Justin Hileman <justin@justinhileman.info>
+ * @template Arr
  */
 class Variable extends BaseVariable implements \ArrayAccess
 {

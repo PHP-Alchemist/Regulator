@@ -39,15 +39,9 @@ class RuleBuilder implements \ArrayAccess
      * Register an operator namespace.
      *
      * Note that, depending on your filesystem, operator namespaces are most likely case sensitive.
-     *
-     * @throws \InvalidArgumentException
      */
     public function registerOperatorNamespace(string $namespace): self
     {
-        if (!\is_string($namespace)) {
-            throw new \InvalidArgumentException('Namespace argument must be a string');
-        }
-
         $this->operatorNamespaces[$namespace] = true;
 
         return $this;
@@ -96,46 +90,46 @@ class RuleBuilder implements \ArrayAccess
     /**
      * Check whether a Variable is already set.
      *
-     * @param string $name The Variable name
+     * @param string $offset The Variable offset
      */
-    public function offsetExists($name): bool
+    public function offsetExists($offset): bool
     {
-        return isset($this->variables[$name]);
+        return isset($this->variables[$offset]);
     }
 
     /**
-     * Retrieve a Variable by name.
+     * Retrieve a Variable by offset.
      *
-     * @param string $name The Variable name
+     * @param string $offset The Variable offset
      */
-    public function offsetGet($name): RuleBuilder\Variable
+    public function offsetGet($offset): RuleBuilder\Variable
     {
-        if (!isset($this->variables[$name])) {
-            $this->variables[$name] = new RuleBuilder\Variable($this, $name);
+        if (!isset($this->variables[$offset])) {
+            $this->variables[$offset] = new RuleBuilder\Variable($this, $offset);
         }
 
-        return $this->variables[$name];
+        return $this->variables[$offset];
     }
 
     /**
      * Set the default value of a Variable.
      *
-     * @param string $name  The Variable name
+     * @param string $offset  The Variable offset
      * @param mixed  $value The Variable default value
      */
-    public function offsetSet($name, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
-        $this->offsetGet($name)->setValue($value);
+        $this->offsetGet($offset)->setValue($value);
     }
 
     /**
      * Remove a defined Variable from the RuleBuilder.
      *
-     * @param string $name The Variable name
+     * @param string $offset The Variable offset
      */
-    public function offsetUnset($name): void
+    public function offsetUnset($offset): void
     {
-        unset($this->variables[$name]);
+        unset($this->variables[$offset]);
     }
 
     /**
