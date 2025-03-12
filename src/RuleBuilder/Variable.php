@@ -29,7 +29,8 @@ use Regulator\VariableOperand;
  * kinds of awkward object instantiation.
  *
  * @author Justin Hileman <justin@justinhileman.info>
- * @template Arr
+ *
+ * @template ArrayAccess<string>
  */
 class Variable extends BaseVariable implements \ArrayAccess
 {

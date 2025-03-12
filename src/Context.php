@@ -37,13 +37,15 @@ namespace Regulator;
  *
  * @author Fabien Potencier
  * @author Justin Hileman <justin@justinhileman.info>
+ *
+ * @template ArrayAccess<string>
  */
 class Context implements \ArrayAccess
 {
-    private array $keys   = [];
+    private array $keys = [];
     private array $values = [];
     private array $frozen = [];
-    private array $raw    = [];
+    private array $raw = [];
 
     private $shared;
     private $protected;
@@ -69,42 +71,42 @@ class Context implements \ArrayAccess
     /**
      * Check if a fact is defined.
      *
-     * @param string $name The unique name for the fact
+     * @param string $offset The unique offset for the fact
      */
-    public function offsetExists($name): bool
+    public function offsetExists($offset) : bool
     {
-        return isset($this->keys[$name]);
+        return isset($this->keys[$offset]);
     }
 
     /**
      * Get the value of a fact.
      *
-     * @param string $name The unique name for the fact
-     *
-     * @throws \InvalidArgumentException if the name is not defined
+     * @param string $offset The unique offset for the fact
      *
      * @return mixed The resolved value of the fact
+     * @throws \InvalidArgumentException if the offset is not defined
+     *
      */
     #[\ReturnTypeWillChange]
-    public function offsetGet($name)
+    public function offsetGet($offset)
     {
-        if (!$this->offsetExists($name)) {
-            throw new \InvalidArgumentException(sprintf('Fact "%s" is not defined.', $name));
+        if (!$this->offsetExists($offset)) {
+            throw new \InvalidArgumentException(sprintf('Fact "%s" is not defined.', $offset));
         }
 
-        $value = $this->values[$name];
+        $value = $this->values[$offset];
 
         // If the value is already frozen, or if it's not callable, or if it's protected, return the raw value
-        if (isset($this->frozen[$name]) || !\is_object($value) || $this->protected->contains($value) || !$this->isCallable($value)) {
+        if (isset($this->frozen[$offset]) || !\is_object($value) || $this->protected->contains($value) || !$this->isCallable($value)) {
             return $value;
         }
 
         // If this is a shared value, resolve, freeze, and return the result
         if ($this->shared->contains($value)) {
-            $this->frozen[$name] = true;
-            $this->raw[$name]    = $value;
+            $this->frozen[$offset] = true;
+            $this->raw[$offset]    = $value;
 
-            return $this->values[$name] = $value($this);
+            return $this->values[$offset] = $value($this);
         }
 
         // Otherwise, resolve and return the result
@@ -112,42 +114,42 @@ class Context implements \ArrayAccess
     }
 
     /**
-     * Set a fact name and value.
+     * Set a fact offset and value.
      *
      * A fact will be lazily evaluated if it is a Closure or invokable object.
      * To define a fact as a literal callable, use Context::protect.
      *
-     * @param string $name  The unique name for the fact
-     * @param mixed  $value The value or a closure to lazily define the value
+     * @param string $offset The unique offset for the fact
+     * @param mixed $value The value or a closure to lazily define the value
      *
      * @throws \RuntimeException if a frozen fact overridden
      */
-    public function offsetSet($name, $value): void
+    public function offsetSet($offset, $value) : void
     {
-        if (isset($this->frozen[$name])) {
-            throw new \RuntimeException(sprintf('Cannot override frozen fact "%s".', $name));
+        if (isset($this->frozen[$offset])) {
+            throw new \RuntimeException(sprintf('Cannot override frozen fact "%s".', $offset));
         }
 
-        $this->keys[$name]   = true;
-        $this->values[$name] = $value;
+        $this->keys[$offset]   = true;
+        $this->values[$offset] = $value;
     }
 
     /**
      * Unset a fact.
      *
-     * @param string $name The unique name for the fact
+     * @param string $offset The unique offset for the fact
      */
-    public function offsetUnset($name): void
+    public function offsetUnset($offset) : void
     {
-        if ($this->offsetExists($name)) {
-            $value = $this->values[$name];
+        if ($this->offsetExists($offset)) {
+            $value = $this->values[$offset];
 
             if (\is_object($value)) {
                 $this->shared->detach($value);
                 $this->protected->detach($value);
             }
 
-            unset($this->keys[$name], $this->values[$name], $this->frozen[$name], $this->raw[$name]);
+            unset($this->keys[$offset], $this->values[$offset], $this->frozen[$offset], $this->raw[$offset]);
         }
     }
 
@@ -157,9 +159,9 @@ class Context implements \ArrayAccess
      *
      * @param callable $callable A fact callable to share
      *
+     * @return callable The passed callable
      * @throws \InvalidArgumentException if the callable is not a Closure or invokable object
      *
-     * @return callable The passed callable
      */
     public function share($callable)
     {
@@ -180,9 +182,9 @@ class Context implements \ArrayAccess
      *
      * @param callable $callable A callable to protect from being evaluated
      *
+     * @return callable The passed callable
      * @throws \InvalidArgumentException if the callable is not a Closure or invokable object
      *
-     * @return callable The passed callable
      */
     public function protect($callable)
     {
@@ -200,9 +202,9 @@ class Context implements \ArrayAccess
      *
      * @param string $name The unique name for the fact
      *
+     * @return mixed The value of the fact or the closure defining the fact
      * @throws \InvalidArgumentException if the name is not defined
      *
-     * @return mixed The value of the fact or the closure defining the fact
      */
     public function raw($name)
     {
@@ -220,7 +222,7 @@ class Context implements \ArrayAccess
     /**
      * Get all defined fact names.
      */
-    public function keys(): array
+    public function keys() : array
     {
         return array_keys($this->keys);
     }
@@ -230,7 +232,7 @@ class Context implements \ArrayAccess
      *
      * @param mixed $callable
      */
-    protected function isCallable($callable): bool
+    protected function isCallable($callable) : bool
     {
         return \is_object($callable) && \is_callable($callable);
     }

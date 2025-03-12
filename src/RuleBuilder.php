@@ -114,8 +114,8 @@ class RuleBuilder implements \ArrayAccess
     /**
      * Set the default value of a Variable.
      *
-     * @param string $offset  The Variable offset
-     * @param mixed  $value The Variable default value
+     * @param string $offset The Variable offset
+     * @param mixed  $value  The Variable default value
      */
     public function offsetSet($offset, mixed $value): void
     {
