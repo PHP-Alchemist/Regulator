@@ -42,10 +42,10 @@ namespace Regulator;
  */
 class Context implements \ArrayAccess
 {
-    private array $keys = [];
+    private array $keys   = [];
     private array $values = [];
     private array $frozen = [];
-    private array $raw = [];
+    private array $raw    = [];
 
     private $shared;
     private $protected;
@@ -84,8 +84,8 @@ class Context implements \ArrayAccess
      * @param string $offset The unique offset for the fact
      *
      * @return mixed The resolved value of the fact
-     * @throws \InvalidArgumentException if the offset is not defined
      *
+     * @throws \InvalidArgumentException if the offset is not defined
      */
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
@@ -120,7 +120,7 @@ class Context implements \ArrayAccess
      * To define a fact as a literal callable, use Context::protect.
      *
      * @param string $offset The unique offset for the fact
-     * @param mixed $value The value or a closure to lazily define the value
+     * @param mixed  $value  The value or a closure to lazily define the value
      *
      * @throws \RuntimeException if a frozen fact overridden
      */
@@ -160,8 +160,8 @@ class Context implements \ArrayAccess
      * @param callable $callable A fact callable to share
      *
      * @return callable The passed callable
-     * @throws \InvalidArgumentException if the callable is not a Closure or invokable object
      *
+     * @throws \InvalidArgumentException if the callable is not a Closure or invokable object
      */
     public function share($callable)
     {
@@ -183,8 +183,8 @@ class Context implements \ArrayAccess
      * @param callable $callable A callable to protect from being evaluated
      *
      * @return callable The passed callable
-     * @throws \InvalidArgumentException if the callable is not a Closure or invokable object
      *
+     * @throws \InvalidArgumentException if the callable is not a Closure or invokable object
      */
     public function protect($callable)
     {
@@ -203,8 +203,8 @@ class Context implements \ArrayAccess
      * @param string $name The unique name for the fact
      *
      * @return mixed The value of the fact or the closure defining the fact
-     * @throws \InvalidArgumentException if the name is not defined
      *
+     * @throws \InvalidArgumentException if the name is not defined
      */
     public function raw($name)
     {
